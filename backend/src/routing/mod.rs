@@ -1,6 +1,7 @@
 pub mod user;
 pub mod media;
 pub mod person;
+pub mod franchise;
 
 pub mod prelude {
     pub use crate::error::ApiRespResult as ApiResult;

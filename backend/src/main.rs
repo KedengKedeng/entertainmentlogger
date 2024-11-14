@@ -10,6 +10,7 @@ use poem::{
     EndpointExt, Route, Server,
 };
 use poem_openapi::OpenApiService;
+use routing::franchise;
 use std::time::Duration;
 
 use sqlx::{postgres::PgPoolOptions, PgPool};
@@ -91,7 +92,7 @@ async fn main() -> anyhow::Result<()> {
         .allow_credentials(true);
 
     let api_service = OpenApiService::new(
-        (user::UserRoutes, media::MediaRoutes),
+        (user::UserRoutes, media::MediaRoutes, franchise::FranchiseRoutes),
         "Entertainment logger API",
         "0.1",
     )

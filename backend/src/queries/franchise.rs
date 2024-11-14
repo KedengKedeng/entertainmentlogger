@@ -17,7 +17,7 @@ pub async fn get_franchise_by_id(id: &str) -> ApiResult<Franchise> {
     Ok(franchise)
 }
 
-pub async fn create_franchise(new_franchise: NewFranchise) -> ApiResult<Franchise> {
+pub async fn create_franchise(new_franchise: &NewFranchise) -> ApiResult<Franchise> {
     let query = format!(
         "INSERT INTO {} (id, name, picture, bio) VALUES ($1, $2, $3, $4) RETURNING *",
         String::from(TableNames::Franchise)
