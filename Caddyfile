@@ -1,0 +1,15 @@
+{
+	auto_https off
+}
+
+http://* {
+    tls internal
+    reverse_proxy /* frontend:4321
+    reverse_proxy /api* backend:3000
+}
+
+* {
+    tls internal
+    reverse_proxy /* frontend:4321
+    reverse_proxy /api* backend:3000
+}
