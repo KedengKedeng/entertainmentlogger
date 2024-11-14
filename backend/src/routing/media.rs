@@ -1,5 +1,5 @@
-use queries::media;
-use types::media::{Media, NewMedia, UpdatedMedia};
+use queries::{media, views::media_with_user_data};
+use types::{media::{Media, NewMedia, UpdatedMedia}, views::media_with_user_data::MediaWithUserData};
 
 use super::prelude::*;
 
@@ -33,5 +33,12 @@ impl MediaRoutes {
         media::delete_media(&id.0).await?;
 
         Ok(())
+    }
+
+    #[oai(path = "/media/:media_id/with-user-data/:user_id", method = "get")]
+    async fn get_media_with_user_data(&self, media_id: Path<String>, user_id: Path<String>) -> ApiResult<Json<MediaWithUserData>> {
+        let media = media_with_user_data::get_media_with_user_data(&media_id.0, &user_id.0).await?;
+
+        Ok(Json(media))
     }
 }

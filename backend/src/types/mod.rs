@@ -5,6 +5,7 @@ pub mod genre;
 pub mod person;
 pub mod company;
 pub mod relations;
+pub mod views;
 pub mod table_names;
 
 pub(super) mod prelude {

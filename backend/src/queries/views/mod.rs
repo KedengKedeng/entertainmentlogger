@@ -1,11 +1,4 @@
-pub mod user;
-pub mod relations;
-pub mod views;
-pub mod franchise;
-pub mod media;
-pub mod genre;
-pub mod person;
-pub mod company;
+pub mod media_with_user_data;
 
 pub (super)mod prelude {
     pub use crate::types;

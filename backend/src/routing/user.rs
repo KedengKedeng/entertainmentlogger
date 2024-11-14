@@ -1,5 +1,8 @@
-use queries::user;
-use types::user::{NewUser, UpdatedUser, User};
+use queries::{user, views::media_with_user_data};
+use types::{
+    user::{NewUser, UpdatedUser, User},
+    views::media_with_user_data::MediaWithUserData,
+};
 
 use super::prelude::*;
 
@@ -29,7 +32,11 @@ impl UserRoutes {
     }
 
     #[oai(path = "/user/:id", method = "put")]
-    async fn update_user(&self, id: Path<String>, data: Json<UpdatedUser>) -> ApiResult<Json<User>> {
+    async fn update_user(
+        &self,
+        id: Path<String>,
+        data: Json<UpdatedUser>,
+    ) -> ApiResult<Json<User>> {
         let user = user::update_user(&id.0, &data.0).await?;
 
         Ok(Json(user))
@@ -40,5 +47,12 @@ impl UserRoutes {
         user::delete_user(&id.0).await?;
 
         Ok(())
+    }
+
+    #[oai(path = "/user/:id/media", method = "get")]
+    async fn get_user_media(&self, id: Path<String>) -> ApiResult<Json<Vec<MediaWithUserData>>> {
+        let media = media_with_user_data::get_all_media_with_user_data(&id.0).await?;
+
+        Ok(Json(media))
     }
 }
