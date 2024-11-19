@@ -7,6 +7,7 @@
   import HomeIcon from "svelte-material-icons/Home.svelte";
   import Rating from "../Rating.svelte";
   import { SideBarPageEnum } from "./sideBarPageEnum";
+  import Bookmarks from "./Bookmarks.svelte";
 
   interface Props {
     currentPage: SideBarPageEnum;
@@ -21,20 +22,7 @@
   <div class="rounded-xl bg-base-500 p-2 flex flex-col gap-1 ml-4">
     <p>Bookmarks</p>
 
-    <div class="grid grid-cols-3 gap-3">
-      {#each Array(9) as _}
-        <div class="flex flex-col w-full">
-          <div class="w-full aspect-square">
-            <PictureCard
-              imgSrc="https://picsum.photos/200/300"
-              height="100%"
-              width="100%"
-            />
-          </div>
-          <p class="break-all">blabla,blabla</p>
-        </div>
-      {/each}
-    </div>
+    <Bookmarks />
   </div>
 
   <button
