@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FranchiseCard from "./cards/franchise/FranchiseCard.svelte";
+  import CreatorCard from "$cards/creator/CreatorCard.svelte";
   import HeaderBar from "./header/HeaderBar.svelte";
   import SideBar from "./sidebar/SideBar.svelte";
   import { SideBarPageEnum } from "./sidebar/sideBarPageEnum";
@@ -13,11 +13,22 @@
       class="h-full w-full overflow-y-scroll overflow-x-hidden grid grid-cols-5 gap-2 grid-flow-row bg-base-400 p-2"
     >
       {#each Array(15) as _}
-        <FranchiseCard
-          imgSrc="https://picsum.photos/200/300"
-          rating={4.5}
-          franchiseName="blabla"
-          franchiseDescription="blabla"
+        <CreatorCard
+          imageCollageUrls={[
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+          ]}
+          creatorImage="https://picsum.photos/200/300"
+          creatorName="blabla"
+          creatorKnownFor={["blabla", "blabla", "blabla", "blabla"]}
+          creationAmount={10}
         />
       {/each}
     </div>
