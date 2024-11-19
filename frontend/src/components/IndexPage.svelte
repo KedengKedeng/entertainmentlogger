@@ -13,7 +13,12 @@
       class="h-full w-full overflow-y-scroll overflow-x-hidden grid grid-cols-5 gap-2 grid-flow-row bg-base-400 p-2"
     >
       {#each Array(15) as _}
-        <FranchiseCard />
+        <FranchiseCard
+          imgSrc="https://picsum.photos/200/300"
+          rating={4.5}
+          franchiseName="blabla"
+          franchiseDescription="blabla"
+        />
       {/each}
     </div>
   </div>

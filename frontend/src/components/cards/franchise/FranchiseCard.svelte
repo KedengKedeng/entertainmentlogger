@@ -3,6 +3,15 @@
   import PictureCard from "../PictureCard.svelte";
   import FranchiseCardHover from "./FranchiseCardHover.svelte";
 
+  interface Props {
+    imgSrc: string;
+    rating: number;
+    franchiseName: string;
+    franchiseDescription: string;
+  }
+
+  let { imgSrc, rating, franchiseName, franchiseDescription }: Props = $props();
+
   let visible = $state(false);
   let mousePosition = $state({ x: 0, y: 0 });
 </script>
@@ -10,7 +19,6 @@
 <div
   class="w-full aspect-[3/4] relative"
   onmouseenter={(e) => {
-    console.log(e);
     visible = true;
     mousePosition = { x: e.clientX, y: e.clientY };
   }}
@@ -19,20 +27,20 @@
   }}
 >
   <PictureCard
-    imgSrc="https://picsum.photos/200/300"
+    {imgSrc}
     height="100%"
     width="100%"
   />
 
   <div class="absolute bottom-1 left-1">
-    <Rating rating={4.5} />
+    <Rating {rating} />
   </div>
 </div>
 
 <FranchiseCardHover
   {visible}
   pos={mousePosition}
-  franchiseName="BLABLA"
-  franchiseRating={4.5}
-  franchiseDescription="BLABLA"
+  {franchiseName}
+  franchiseRating={rating}
+  {franchiseDescription}
 />
