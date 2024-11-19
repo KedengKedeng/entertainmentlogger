@@ -8,6 +8,7 @@
   import Rating from "../Rating.svelte";
   import { SideBarPageEnum } from "./sideBarPageEnum";
   import Bookmarks from "./Bookmarks.svelte";
+  import { navigate } from "$util/navigate";
 
   interface Props {
     currentPage: SideBarPageEnum;
@@ -26,6 +27,7 @@
   </div>
 
   <button
+    onclick={() => navigate("/")}
     class="p-2 flex flex-row items-center gap-2 {currentPage ===
     SideBarPageEnum.FRANCHISES
       ? 'bg-base-400 rounded-r-xl pl-6'
@@ -46,6 +48,7 @@
   </button>
 
   <button
+    onclick={() => navigate("/creators")}
     class="p-2 flex flex-row items-center gap-2 {currentPage ===
     SideBarPageEnum.CREATORS
       ? 'bg-base-400 rounded-r-xl pl-6'
