@@ -1,13 +1,17 @@
 <script lang="ts">
   import StarIcon from "svelte-material-icons/Star.svelte";
 
-  export let rating: number;
-  export let starSize = 20;
-  let numberList: number[] = [];
+  interface Props {
+    rating: number;
+    starSize?: number;
+  }
 
-  $: numberList = Array(Math.ceil(rating))
-    .fill(0)
-    .map((_, i) => (i += 1));
+  let { rating, starSize = 20 }: Props = $props();
+  let numberList: number[] = $derived(
+    Array(Math.ceil(rating))
+      .fill(0)
+      .map((_, i) => (i += 1))
+  );
 </script>
 
 <div class="flex flex-row flex-nowrap items-center">

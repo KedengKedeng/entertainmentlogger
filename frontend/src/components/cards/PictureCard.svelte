@@ -1,8 +1,11 @@
 <script lang="ts">
-  export let imgSrc: string;
+  interface Props {
+    imgSrc: string;
+    height: string;
+    width: string;
+  }
 
-  export let height: string;
-  export let width: string;
+  let { imgSrc, height, width }: Props = $props();
 </script>
 
 <div
