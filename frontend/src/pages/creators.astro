@@ -1,10 +1,17 @@
 ---
-import CreatorsPage from '../components/CreatorsPage.svelte';
-import Layout from '../layouts/Layout.astro';
+import CreatorsPage from "../components/CreatorsPage.svelte";
+import Layout from "../layouts/Layout.astro";
+import { getUserFromCookies } from "$logic/api/routes/user";
+
+const userSession = await getUserFromCookies(
+  Astro.request.headers.get("cookie")
+).catch(() => {});
+
+if (!userSession) return Astro.redirect("/login");
 ---
 
 <Layout title="Entertainment Logger - Creators">
-	<main>
-		<CreatorsPage client:load />
-	</main>
+  <main>
+    <CreatorsPage client:load />
+  </main>
 </Layout>

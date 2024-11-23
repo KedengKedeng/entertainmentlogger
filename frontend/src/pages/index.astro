@@ -1,10 +1,17 @@
 ---
-import FranchisePage from '../components/FranchisePage.svelte';
-import Layout from '../layouts/Layout.astro';
+import { getUserFromCookies } from "$logic/api/routes/user";
+import FranchisePage from "../components/FranchisePage.svelte";
+import Layout from "../layouts/Layout.astro";
+
+const userSession = await getUserFromCookies(
+  Astro.request.headers.get("cookie")
+).catch(() => {});
+
+if (!userSession) return Astro.redirect("/login");
 ---
 
 <Layout title="Entertainment Logger - Franchises">
-	<main>
-		<FranchisePage client:load />
-	</main>
+  <main>
+    <FranchisePage client:load />
+  </main>
 </Layout>
