@@ -1,5 +1,6 @@
 <script lang="ts">
   import { APIReponseCodes } from "$logic/api/ApiConnection";
+  import { login } from "$logic/api/routes/login";
   import { register } from "$logic/api/routes/register";
   import type { NewUser } from "$logic/api/types/user";
   import { navigate } from "astro/virtual-modules/transitions-router.js";
@@ -16,7 +17,20 @@
 
     const registerResponse = await register(registerData);
 
-    // TODO: Error handling + automatically logging in
+    const loginResponse = await login({
+      email: registerData.email,
+      password: registerData.password,
+    })
+
+    // TODO: Give users feedback when login goes wrong
+    switch (loginResponse.status) {
+      case APIReponseCodes.OK:
+        navigate("/");
+        break;
+      default:
+        throw new Error(loginResponse.error);
+        break;
+    }
   }
 
   let passwordValue: string = $state("");
