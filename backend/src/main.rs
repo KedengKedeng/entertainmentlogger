@@ -4,13 +4,10 @@
 use clap::Parser;
 use once_cell::sync::Lazy;
 use poem::{
-    http::Method,
-    listener::TcpListener,
-    middleware::{CookieJarManager, Cors, Tracing},
-    EndpointExt, Route, Server,
+    http::Method, listener::TcpListener, middleware::{CookieJarManager, Cors, Tracing}, post, EndpointExt, Route, Server
 };
 use poem_openapi::OpenApiService;
-use routing::{franchise, person};
+use routing::{franchise, person, user_login::user_login};
 use std::time::Duration;
 
 use sqlx::{postgres::PgPoolOptions, PgPool};
@@ -112,6 +109,7 @@ async fn main() -> anyhow::Result<()> {
         .nest("/api/v1", api_service.with(cors))
         .nest("/api/spec.json", spec)
         .nest("/api/spec.yml", spec_yml)
+        .at("/api/login", post(user_login))
         .with(Tracing)
         .with(CookieJarManager::new());
 
