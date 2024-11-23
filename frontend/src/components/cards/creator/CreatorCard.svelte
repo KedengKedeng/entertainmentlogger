@@ -24,13 +24,13 @@
   </div>
 
   <div
-    class="w-full h-1/2 bg-base-500 absolute bottom-0 flex flex-col items-center p-2 pt-[10%]"
+    class="w-full h-1/2 bg-base-500 absolute bottom-0 flex flex-col items-center p-[10%] pt-[5%]"
   >
-    <h2 class="font-bold">{creatorName}</h2>
+    <h2 class="font-bold text-[3vh]">{creatorName}</h2>
 
-    <p class="text-xs opacity-30">{creationAmount} franchises</p>
+    <p class="text-[1.5vh] opacity-30">{creationAmount} franchises</p>
 
-    <p class="text-xs break-all text-ellipsis overflow-hidden line-clamp-3">
+    <p class="text-[1.5vh] break-all text-ellipsis line-clamp-4" >
       {creatorKnownFor.join(", ")}
     </p>
   </div>
