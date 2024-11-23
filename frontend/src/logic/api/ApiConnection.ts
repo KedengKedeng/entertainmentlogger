@@ -22,7 +22,9 @@ export class APIConnection {
     this.url = url;
   }
 
-  public async get<ReturnType>(path: string): Promise<APIResponse<ReturnType>> {
+  public async get<ReturnType>(
+    path: string,
+  ): Promise<APIResponse<ReturnType>> {
     const response = await fetch(this.url + path, {
       method: "GET",
       headers: {
@@ -49,7 +51,11 @@ export class APIConnection {
     InputType,
     InputTypeClass extends DataValidator<InputType>,
     ReturnType,
-  >(path: string, data: InputTypeClass): Promise<APIResponse<ReturnType>> {
+  >(
+    path: string,
+    data: InputTypeClass,
+    contentType: string = "application/json",
+  ): Promise<APIResponse<ReturnType>> {
     if (!data.validate())
       return {
         status: APIReponseCodes.MissingFields,
@@ -60,8 +66,9 @@ export class APIConnection {
       method: "POST",
       headers: {
         allowCredentials: "true",
+        "Content-Type": contentType,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data.data),
     });
 
     if (!response.ok) {
@@ -83,7 +90,11 @@ export class APIConnection {
     InputType,
     InputTypeClass extends DataValidator<InputType>,
     ReturnType,
-  >(path: string, data: InputTypeClass): Promise<APIResponse<ReturnType>> {
+  >(
+    path: string,
+    data: InputTypeClass,
+    contentType: string = "application/json",
+  ): Promise<APIResponse<ReturnType>> {
     if (!data.validate())
       return {
         status: APIReponseCodes.MissingFields,
@@ -94,8 +105,9 @@ export class APIConnection {
       method: "PATCH",
       headers: {
         allowCredentials: "true",
+        "Content-Type": contentType,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data.data),
     });
 
     if (!response.ok) {
@@ -139,4 +151,5 @@ export class APIConnection {
   }
 }
 
-export const api = new APIConnection(import.meta.env.PUBLIC_API_DOMAIN);
+export const api = new APIConnection("");
+export const ssrApi = new APIConnection(import.meta.env.PUBLIC_API_DOMAIN);

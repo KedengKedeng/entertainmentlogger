@@ -1,9 +1,10 @@
 import { jwtDecode } from "jwt-decode";
-import { api } from "../ApiConnection";
+import { api, ssrApi } from "../ApiConnection";
 import type { User } from "../types/user";
+import { getCookie } from "$util/cookie";
 
 export async function getUser(id: string) {
-  const response = await api.get<User>(`/api/v1/user/${id}`);
+  const response = await ssrApi.get<User>(`/api/v1/user/${id}`);
 
   return response;
 }

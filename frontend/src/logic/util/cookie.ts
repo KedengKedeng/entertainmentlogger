@@ -1,7 +1,7 @@
-function getCookie<T = string>(
+export function getCookie(
   key: string,
   cookie: string,
-): T | null {
+) {
   if (typeof key !== "string" || !key) {
     return null;
   }
@@ -14,6 +14,6 @@ function getCookie<T = string>(
   if (match === null) {
     return null;
   }
-  
-  return match[1] as T | null;
+
+  return decodeURIComponent(match[1]);
 }

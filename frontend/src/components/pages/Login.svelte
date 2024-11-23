@@ -19,8 +19,10 @@
     switch (loginResponse.status) {
       case APIReponseCodes.OK:
         navigate("/");
+        break;
       default:
         throw new Error(loginResponse.error);
+        break;
     }
   }
 </script>

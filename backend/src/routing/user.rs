@@ -4,6 +4,8 @@ use types::{
     views::media_with_user_data::MediaWithUserData,
 };
 
+use crate::util::hash;
+
 use super::prelude::*;
 
 pub struct UserRoutes;
@@ -25,7 +27,8 @@ impl UserRoutes {
     }
 
     #[oai(path = "/user", method = "post")]
-    async fn create_user(&self, data: Json<NewUser>) -> ApiResult<Json<User>> {
+    async fn create_user(&self, mut data: Json<NewUser>) -> ApiResult<Json<User>> {
+        data.password = hash(&data.password);
         let user = user::create_user(&data.0).await?;
 
         Ok(Json(user))

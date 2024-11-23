@@ -8,7 +8,6 @@ const USER_LOGIN_OBJECT_LENGTH = 2;
 
 export class UserLoginValidator extends DataValidator<UserLogin> {
   validate(): boolean {
-    console.log(this.data, typeof this.data.email == "string");
     if (
       USER_LOGIN_OBJECT_LENGTH != Object.keys(this.data).length ||
       typeof this.data.email != "string" ||

@@ -23,5 +23,16 @@ export default defineConfig({
         },
       },
     },
+    server: {
+      proxy: {
+        "/api": {
+          target: "http://localhost",
+          changeOrigin: true,
+          headers: {
+            "oauth-url": "http://localhost:4321",
+          },
+        },
+      },
+    },
   },
 });
