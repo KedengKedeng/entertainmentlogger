@@ -6,6 +6,7 @@
       "$logic/*": ["./src/logic/*"],
       "$util/*": ["./src/logic/util/*"],
       "$api/*": ["./src/logic/api/*"],
+      "$components/*": ["./src/components/*"],
       "$cards/*": ["./src/components/cards/*"],
     }
   }

@@ -16,7 +16,7 @@ export interface APIResponse<T> {
 }
 
 export class APIConnection {
-  private url: string;
+  private readonly url: string;
 
   constructor(url: string) {
     this.url = url;
@@ -113,7 +113,9 @@ export class APIConnection {
     };
   }
 
-  public async delete<ReturnType>(path: string): Promise<APIResponse<ReturnType>> {
+  public async delete<ReturnType>(
+    path: string,
+  ): Promise<APIResponse<ReturnType>> {
     const response = await fetch(this.url + path, {
       method: "DELETE",
       headers: {
@@ -136,3 +138,5 @@ export class APIConnection {
     };
   }
 }
+
+export const api = new APIConnection(import.meta.env.PUBLIC_API_DOMAIN);
